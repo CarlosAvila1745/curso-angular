@@ -1,0 +1,15 @@
+<div>
+  <input #nuevoNombre type="text" placeholder="Nombre nuevo elemento" />
+  <button (click)="agregar(nuevoNombre.value); nuevoNombre.value=''">Agregar</button>
+</div>
+
+<ul>
+  <li *ngFor="let elemento of elementos$ | async">
+    {{ elemento.nombre }} 
+    <button (click)="borrar(elemento.id)">Eliminar</button>
+    <br/>
+    👍 {{ elemento.votosPositivos }} | 👎 {{ elemento.votosNegativos }}
+    <button (click)="votarPositivo(elemento.id)">Votar 👍</button>
+    <button (click)="votarNegativo(elemento.id)">Votar 👎</button>
+  </li>
+</ul>

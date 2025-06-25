@@ -1,0 +1,32 @@
+<form [formGroup]="miFormulario" (ngSubmit)="agregarElemento()">
+  <label>Nombre:</label>
+  <input type="text" formControlName="nombre" />
+  <div *ngIf="miFormulario.get('nombre')?.touched && miFormulario.get('nombre')?.invalid">
+    <small *ngIf="miFormulario.get('nombre')?.hasError('required')">El nombre es requerido.</small>
+    <small *ngIf="miFormulario.get('nombre')?.hasError('longitudMinima')">
+      Debe tener al menos {{ miFormulario.get('nombre')?.errors?.['longitudMinima'].requiredLength }} caracteres.
+    </small>
+  </div>
+
+  <label>Email:</label>
+  <input type="text" formControlName="email" />
+  <div *ngIf="miFormulario.get('email')?.touched && miFormulario.get('email')?.invalid">
+    <small *ngIf="miFormulario.get('email')?.hasError('required')">El email es requerido.</small>
+    <small *ngIf="miFormulario.get('email')?.hasError('email')">Formato de email inválido.</small>
+  </div>
+
+  <button type="submit" [disabled]="miFormulario.invalid">Agregar</button>
+</form>
+
+<hr>
+
+<app-hijo (datosEnviados)="recibirDato($event)"></app-hijo>
+
+<p>Dato recibido del hijo: {{ datoRecibido }}</p>
+
+<hr>
+
+<h3>Listado de elementos agregados:</h3>
+<ul>
+  <li *ngFor="let elemento of listadoElementos">{{ elemento }}</li>
+</ul>
