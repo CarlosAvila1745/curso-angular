@@ -1,0 +1,20 @@
+<h1>Proyecto Angular Mapbox con Tracking y Redux</h1>
+
+<app-map></app-map>
+
+<app-animado></app-animado>
+
+<button appClickTracker data-tracking-tag="btn-guardar" (clicked)="onTagClicked($event)">
+  Botón Guardar (click aquí)
+</button>
+
+<div appClickTracker data-tracking-tag="div-info" (clicked)="onTagClicked($event)" style="margin-top:10px; padding:10px; background:#eee; cursor:pointer;">
+  Div con tracking (haz click aquí)
+</div>
+
+<h2>Conteo de clicks por tag</h2>
+<ul>
+  <li *ngFor="let tag of trackedTags | keyvalue">
+    {{ tag.key }}: {{ tag.value }}
+  </li>
+</ul>

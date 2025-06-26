@@ -1,0 +1,11 @@
+<ngx-mapbox-gl
+  [style]="'mapbox://styles/mapbox/streets-v11'"
+  [zoom]="[10]"
+  [center]="[-74.5, 40]"
+>
+  <mgl-marker [lngLat]="[-74.5, 40]" (click)="togglePopup()"></mgl-marker>
+
+  <mgl-popup *ngIf="showPopup" [lngLat]="[-74.5, 40]" (close)="showPopup = false">
+    <div>¡Este es un popup del marker!</div>
+  </mgl-popup>
+</ngx-mapbox-gl>
